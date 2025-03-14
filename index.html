@@ -3,82 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sivil Savunma Dökümanları</title>
-    
-    <!-- Bootstrap CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body { background-color: #f8f9fa; padding: 20px; }
-        .doc-item { transition: transform 0.2s ease-in-out; }
-        .doc-item:hover { transform: scale(1.05); }
-        .icon { width: 24px; margin-right: 10px; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1 class="text-center my-4">Sivil Savunma Dökümanları</h1>
-        
-        <!-- Arama Kutusu -->
-        <div class="mb-3">
-            <input type="text" id="searchBox" class="form-control" placeholder="Döküman ara...">
-        </div>
+    <title>İş Güvenliği ve Sağlığı Dökümanları</title>
 
-        <!-- Döküman Listesi -->
-        <ul id="docs-list" class="list-group">
-            <li class="list-group-item text-center">Dökümanlar yükleniyor...</li>
-        </ul>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome İkonları -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Özel CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Başlık Bölümü -->
+    <header class="bg-dark text-white text-center py-4">
+        <h1><i class="fas fa-hard-hat"></i> İş Güvenliği ve Sağlığı Dökümanları</h1>
+        <p>Güvenli Çalışma, Sağlıklı Yaşam!</p>
+    </header>
+
+    <!-- Arka Plan ve İçerik -->
+    <div class="container my-5">
+        <div class="card shadow-lg p-4">
+            <h2 class="text-center mb-4">Döküman Listesi</h2>
+            <table id="docsTable" class="table table-striped table-hover table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Döküman Adı <i class="fa fa-file-alt"></i></th>
+                        <th>Kategori <i class="fa fa-tags"></i></th>
+                        <th>Yükleyen Kişi <i class="fa fa-user"></i></th>
+                        <th>Yüklenme Tarihi <i class="fa fa-calendar-alt"></i></th>
+                        <th>Açıklama <i class="fa fa-info-circle"></i></th>
+                        <th>Link <i class="fa fa-download"></i></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 
-    <!-- Bootstrap JS ve Fetch Kodu için Scriptler -->
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>© 2024 İş Güvenliği ve Sağlığı Platformu | Güvenle Çalış, Sağlıklı Kal!</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Özel JavaScript -->
+    <script src="script.js"></script>
 </body>
-<script>
-    const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSAseP5FecfDEb7TE2Z3cSNT0Lvj9HYYF8erNeC_38iSCEFsnPHWfhmeqYegxmfOCTcz8Bk2Hbef72J/pub?output=csv://docs.google.com/spreadsheets/d/e/2PACX-1vT.../pub?output=csv";
-
-    // İkonları belirleyelim
-    const getIcon = (link) => {
-        if (link.includes(".pdf")) return "📄";
-        if (link.includes(".doc") || link.includes(".docx")) return "📝";
-        if (link.includes(".xls") || link.includes(".xlsx")) return "📊";
-        return "📁";
-    };
-
-    // Dökümanları çek ve listele
-    fetch(sheetUrl)
-        .then(response => response.text())
-        .then(data => {
-            const rows = data.split("\n");
-            let content = "";
-
-            rows.forEach((row, index) => {
-                if (index > 0) { 
-                    const [title, link, desc] = row.split(",");
-                    if (title && link && desc) {
-                        const icon = getIcon(link.trim());
-                        content += `
-                            <li class="list-group-item doc-item d-flex justify-content-between align-items-center">
-                                <div>
-                                    <span class="icon">${icon}</span>
-                                    <strong>${title.trim()}</strong> - ${desc.trim()}
-                                </div>
-                                <a href="${link.trim()}" target="_blank" class="btn btn-primary btn-sm">İndir</a>
-                            </li>`;
-                    }
-                }
-            });
-
-            document.getElementById("docs-list").innerHTML = content || "Henüz döküman eklenmedi.";
-        })
-        .catch(error => console.error("Dökümanlar yüklenirken hata oluştu:", error));
-
-    // Arama fonksiyonu
-    document.getElementById("searchBox").addEventListener("input", (e) => {
-        const searchValue = e.target.value.toLowerCase();
-        const items = document.querySelectorAll(".doc-item");
-
-        items.forEach(item => {
-            const text = item.innerText.toLowerCase();
-            item.style.display = text.includes(searchValue) ? "flex" : "none";
-        });
-    });
-</script>
+</html>

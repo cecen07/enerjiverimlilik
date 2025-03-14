@@ -1,34 +1,49 @@
+/* Arka plan ve temel stil */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background: url('https://source.unsplash.com/1600x900/?construction,safety') no-repeat center center/cover;
+    color: #333;
     margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4;
-    text-align: center;
+    padding: 0;
 }
 
-h1 {
-    color: #444;
+/* Başlık stil */
+header h1 {
+    font-weight: bold;
+    font-size: 2.5rem;
 }
 
-table {
-    width: 80%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background: #fff;
+/* Kart ve tablo stil */
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
 }
 
-th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: center;
+/* Tablo başlığı stil */
+table th {
+    background-color: #343a40 !important;
+    color: #fff !important;
 }
 
-th {
-    background-color: #4CAF50;
-    color: white;
+/* Tablo satırları */
+table tbody tr:hover {
+    background-color: #ffcc00;
+    color: #000;
+    cursor: pointer;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
+/* Footer stil */
+footer {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Küçük ekranlar için responsive iyileştirme */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+    table {
+        font-size: 0.8rem;
+    }
 }
