@@ -1,5 +1,5 @@
 // Google Sheets'ten CSV çekme linki
-const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQHTJ1234XYZ/pub?output=csv";
+const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSAseP5FecfDEb7TE2Z3cSNT0Lvj9HYYF8erNeC_38iSCEFsnPHWfhmeqYegxmfOCTcz8Bk2Hbef72J/pub?output=csv";
 
 // CSV'yi fetch ile alıp tabloya ekleme
 fetch(csvUrl)
